@@ -1,2 +1,2 @@
-# Arduino-mosiwi-basic-learning-kit
+# Mosiwi-basic-learning-kit-for-arduino
 Learn basic knowledge of arduino.
