@@ -1,0 +1,68 @@
+#######################################
+# Syntax Coloring Map Mosiwi_Basic_Learning_Kit
+#######################################
+
+#######################################
+# Library (KEYWORD3)
+#######################################
+Mosiwi	            KEYWORD3
+
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+Mosiwi	            KEYWORD1	
+MswTimer	        KEYWORD1	
+MswLed	            KEYWORD1
+MswHT	            KEYWORD1
+MswIR 	            KEYWORD1
+AHT20	            KEYWORD1
+
+# MsTimer2
+MsTimer2	        KEYWORD1
+
+# M74hc595
+On	                KEYWORD1   
+Off	                KEYWORD1
+
+# BC7278
+MswDT_Button	    KEYWORD1
+
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+# MsTimer2
+set	                KEYWORD2
+start	            KEYWORD2
+stop	            KEYWORD2
+
+# IR
+IR         	        KEYWORD2
+
+# M74hc595
+Init_LED_IO	        KEYWORD2
+SetLed	            KEYWORD2
+SetLedBar 	        KEYWORD2
+
+# AHT20
+Read_Status	        KEYWORD2
+Start_Init       	KEYWORD2
+Read_CTdata    	    KEYWORD2
+
+# BC7278
+SetdisplaySeg	    KEYWORD2
+SetSegFlash       	KEYWORD2
+SetBitFlash    	    KEYWORD2
+SetFlashSpeed	    KEYWORD2
+ClearAll         	KEYWORD2
+ClearBit    	    KEYWORD2
+DisplayChar	        KEYWORD2
+DisplayNumber	    KEYWORD2
+ReadKeyValue	    KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
