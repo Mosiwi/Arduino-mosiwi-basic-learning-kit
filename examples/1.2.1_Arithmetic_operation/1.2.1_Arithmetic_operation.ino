@@ -2,10 +2,7 @@
  The circuit: No external hardware needed.
  
  Learning target:
-	1. Serial
-	2. Serial monitor
-	3. Use of two serial port functions
-	4. Arithmetic operator: +, -, *, /, %
+	1. Arithmetic operator: +, -, *, /, %
 	
  Web: http://mosiwi.com/
  Wiki: http://wiki.mosiwi.com/
@@ -24,9 +21,13 @@ void setup() {
 
 // the loop function runs over and over again forever
 void loop() {	
-  num = 10+1-3;
-  Serial.print("10+1-3 = ");   
+  num = 10+1;
+  Serial.print("10+1 = ");   
   Serial.println(num);        
+  
+  num = 10-1;
+  Serial.print("10-1 = ");   
+  Serial.println(num); 
   
   num = 2*5;
   Serial.print("2*5 = ");  
@@ -40,8 +41,8 @@ void loop() {
   Serial.print("5%2 = ");      
   Serial.println(num);        
   
+  Serial.println("");
   delay(2000);          
-
 }
 
 

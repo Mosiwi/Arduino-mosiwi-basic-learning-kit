@@ -2,8 +2,8 @@
  This example works with the Mosiwi Basic learning board.
  
  Learning target:
-	1. Slide potentiometer
-	2. voltage
+	1. voltage
+	2. Slide potentiometer
 	3. Analog input port
 	4. Variable: int, float
 	

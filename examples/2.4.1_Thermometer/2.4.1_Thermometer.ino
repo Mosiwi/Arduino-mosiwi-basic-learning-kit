@@ -16,7 +16,7 @@
 #define HIGH_ALARM 30   // Alarm upper limit
 
 // Create a temperature object
-DS18B20 ds(10);
+DS18B20 ds(7);
 
 // Define the buzzer using the 9 pin of the M328 PRO.
 byte BuzzerPin   = 9; 

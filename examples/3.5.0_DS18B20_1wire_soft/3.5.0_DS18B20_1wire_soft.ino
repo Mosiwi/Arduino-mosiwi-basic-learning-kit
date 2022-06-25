@@ -54,7 +54,7 @@ uint8_t OneWire::reset(void){
 	delayMicroseconds(70);
 	r = !digitalRead(pin);                           // DS18B0 exists by pulling low level accordingly
 	interrupts();                                    // Enable the interrupt
-	delayMicroseconds(410);
+	delayMicroseconds(240);
 	return r;
 }
 
@@ -68,7 +68,7 @@ void OneWire::write_bit(uint8_t v){
 		digitalWrite(pin, LOW);                    	// drive output low
 		delayMicroseconds(10);
 		digitalWrite(pin, HIGH);    	            // drive output high
-		delayMicroseconds(55);
+		delayMicroseconds(60);
 	} else {      // write bit 0
 		pinMode(pin, OUTPUT);
 		digitalWrite(pin, LOW);                    	// drive output low
@@ -86,12 +86,12 @@ uint8_t OneWire::read_bit(void){
 	noInterrupts();                                  // Disable the interrupt
 	pinMode(pin, OUTPUT);
 	digitalWrite(pin, LOW);                    	     // drive output low
-	delayMicroseconds(3);
+	delayMicroseconds(2);
 	pinMode(pin, INPUT);                             // allow it to float
 	delayMicroseconds(10);
 	r = digitalRead(pin);
 	interrupts();                                    // Enable the interrupt
-	delayMicroseconds(53);
+	delayMicroseconds(58);
 	return r;
 }
 
@@ -99,7 +99,8 @@ uint8_t OneWire::read_bit(void){
 void OneWire::write_byte(uint8_t v) {
     uint8_t bitMask;
     for (bitMask = 0x01; bitMask; bitMask <<= 1) {
-	write_bit( (bitMask & v)?1:0);
+      write_bit( (bitMask & v)?1:0);
+      delayMicroseconds(1);
     }
 }
 
@@ -108,7 +109,9 @@ uint8_t OneWire::read_byte() {
     uint8_t bitMask;
     uint8_t r = 0;
     for (bitMask = 0x01; bitMask; bitMask <<= 1) {
-	if (read_bit()) r |= bitMask;
+      if (read_bit()) 
+        r |= bitMask;
+      delayMicroseconds(1);
     }
     return r;
 }
@@ -197,7 +200,7 @@ void Temperature::init(void){
 	}
 }
 
-// Initial Configuration
+// Get the temperature value
 float Temperature::getTempC(void){
 	if(oneWire.reset()){
 		oneWire.write_byte(0xcc);          // Skip ROM
@@ -234,8 +237,8 @@ float Temperature::getTempC(void){
     return ((float)temp) * 0.0625;	
 }
 
-// Define a temperature object ds18b20, using pin 10
-Temperature ds18b20(10);
+// Define a temperature object ds18b20, using pin 7
+Temperature ds18b20(7);
 
 void setup(){
 	Serial.begin(9600);
@@ -246,6 +249,8 @@ void setup(){
 }
 
 void loop() {
-	Serial.println(ds18b20.getTempC());
+	Serial.print("Temperature: ");
+	Serial.print(ds18b20.getTempC());
+	Serial.println(" C");
 	delay(1000);
 }

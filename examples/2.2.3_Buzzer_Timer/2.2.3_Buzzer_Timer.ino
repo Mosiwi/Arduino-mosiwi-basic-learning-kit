@@ -17,7 +17,7 @@
 byte BuzzerPin   = 9;  
 
 // Set frequency 
-int frequency = 880;
+int frequency = 500;
 
 // Set interrupt time, 1S = 1000mS
 int time = 1000/frequency; 

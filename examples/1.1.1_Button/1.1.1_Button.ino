@@ -2,12 +2,8 @@
  This example works with the Mosiwi Basic learning board.
  
  Learning target:
-	1. Button
-	2. Digital pin input Settings: INPUT, INPUT_PULLUP, OUTPUT (HIGH, LOW)
-	3. Variable: byte, local variable
-	4. Relational operator: ==, !=
-	5. Assignment operator: =
-	6. Judgment statement: if...else..., if...else if...else...
+	1. Variable: local variable
+	2. Judgment statement: if...else..., if...else if...else...
 	
  Web: http://mosiwi.com/
  Wiki: http://wiki.mosiwi.com/

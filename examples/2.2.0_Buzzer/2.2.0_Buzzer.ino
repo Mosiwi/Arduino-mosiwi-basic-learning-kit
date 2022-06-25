@@ -2,8 +2,9 @@
  This example works with the Mosiwi Basic learning board.
  
  Learning target:
-  1. Control Buzzer 
-  2. function: tone(), notone()
+  1. Buzzer
+  2. MOSFET  
+  3. function: tone(), notone()
      https://www.arduino.cc/reference/en/language/functions/advanced-io/tone/
 	
  Web: http://mosiwi.com/
@@ -35,7 +36,7 @@ void setup() {
 void loop() {
   // play a note on BuzzerPin for 1000 ms:
   tone(BuzzerPin, 440, 1000);
-  delay(1000);
+  delay(2000);
   
   // play a note on BuzzerPin for 1000 ms:
   tone(BuzzerPin, 880);

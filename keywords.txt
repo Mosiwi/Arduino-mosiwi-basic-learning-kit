@@ -15,8 +15,16 @@ Mosiwi	            KEYWORD1
 MswTimer	        KEYWORD1	
 MswLed	            KEYWORD1
 MswHT	            KEYWORD1
-MswIR 	            KEYWORD1
 AHT20	            KEYWORD1
+MswTemperature	    KEYWORD1
+
+MswIR 	            KEYWORD1
+IR_USE_TIMER1	    KEYWORD1
+IR_USE_TIMER2	    KEYWORD1
+
+MswFan	            KEYWORD1
+FAN_USE_TIMER1	    KEYWORD1
+FAN_USE_TIMER2	    KEYWORD1
 
 # MsTimer2
 MsTimer2	        KEYWORD1

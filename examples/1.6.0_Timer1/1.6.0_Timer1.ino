@@ -2,9 +2,9 @@
  This example works with the Mosiwi Basic learning board.
  
  Learning target:
-	1. Timer
-	2. Using library files
-	3. Variable: boolean 
+    1. Using library files
+	2. Timer
+	3. Variable: bool 
 	
  Web: http://mosiwi.com/
  Wiki: http://wiki.mosiwi.com/
@@ -17,7 +17,7 @@
 // Defining character variables: 
 const byte ledPin = 5;               // the number of the LED pin(Blue LED D5)
 // The program is initialized only once when it runs.
-bool output = HIGH;
+bool output = true;
   
 
 // Interrupt function

@@ -22,6 +22,14 @@ byte ledData = 0;
 byte ON  = 1;
 byte OFF = 0;
 
+////////////////////////////////////////////////////////////// 
+void Init_LED_IO(byte latchP, byte clockP, byte dataP){ 
+  //set pins to output because they are addressed in the main loop
+  pinMode(latchP, OUTPUT);
+  pinMode(clockP, OUTPUT);
+  pinMode(dataP, OUTPUT);
+}
+
 //////////////////////////////////////////////////////////////
 // Send 8-bit data to 74HC595.
 // bitOrder: MSBFIRST or LSBFIRST
@@ -35,20 +43,12 @@ void ShiftOut(byte dataPin, byte clockPin, byte bitOrder, byte val){
 			digitalWrite(dataPin, (val & 128) != 0);
 			val <<= 1;
 		}
-			
-		digitalWrite(clockPin, HIGH);
-		delayMicroseconds(10);
-		digitalWrite(clockPin, LOW);
-		delayMicroseconds(10);		
+   
+    digitalWrite(clockPin, LOW);
+    delayMicroseconds(10);  		
+    digitalWrite(clockPin, HIGH);
+    delayMicroseconds(10);
 	}
-}
-
-// 
-void Init_LED_IO(byte latchP, byte clockP, byte dataP){ 
-  //set pins to output because they are addressed in the main loop
-  pinMode(latchP, OUTPUT);
-  pinMode(clockP, OUTPUT);
-  pinMode(dataP, OUTPUT);
 }
 
 //////////////////////////////////////////////////////////////
@@ -59,54 +59,34 @@ void SetLed(byte bit, byte OnOff){
 		return;
 	}
 	if(OnOff == 1){
-		displayData = displayData | (1 << bit);
+		ledData = ledData | (1 << bit);
 	}
 	else{
-		displayData = displayData & (~(1 << bit));
+		ledData = ledData & (~(1 << bit));
 	}
-	//ground latchPin and hold low for as long as you are transmitting
-    digitalWrite(latchPin, LOW);
-	ShiftOut(dataPin, clockPin, MSBFIRST, displayData);
-	//no longer needs to listen for information
-    digitalWrite(latchPin, HIGH);
-}
 
-void SetLed(byte bitLed, byte OnOff){
-  if(OnOff == 1){
-    ledData = ledData & (0x01 << bitLed);
-  }
-  else{
-    ledData = ledData & ~(0x01 << bitLed);
-  }
-  
   //ground latchPin and hold low for as long as you are transmitting
   digitalWrite(latchPin, LOW);
-  shiftOut(dataPin, clockPin, MSBFIRST, ledData);  
-  //return the latch pin high to signal chip that it
+  ShiftOut(dataPin, clockPin, MSBFIRST, ledData);
   //no longer needs to listen for information
-  digitalWrite(latchPin, HIGH);	
+  digitalWrite(latchPin, HIGH);
 }
 
 //////////////////////////////////////////////////////////////
 void setup(){
-	//set pins to output so you can control the shift register
-	pinMode(latchPin, OUTPUT);
-	pinMode(clockPin, OUTPUT);
-	pinMode(dataPin, OUTPUT);
+	//set pins to output so you can control the shift register;
+	Init_LED_IO(latchPin, clockPin, dataPin);
 }
 
 //////////////////////////////////////////////////////////////
 void loop() {
 	int a;
 	for(a=0; a<=7; a++){
-		setLed(a, ON);
+		SetLed(a, ON);
 		delay(1000);
 	}
 	for(a=7; a>=0; a--){
-		setLed(a, OFF);
+		SetLed(a, OFF);
 		delay(1000);
 	}
 }
-
-
-

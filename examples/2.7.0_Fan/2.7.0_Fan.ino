@@ -34,21 +34,22 @@ void loop() {
   // clockwise rotation
   int i;
   MswFan::direction(CW);
-  for(i = 0; i<180; i++){
+  for(i = 0; i<160; i++){
+	// Speed allowed range: 0-255
     MswFan::speed(i);     
     delay(10);	
   }
-  for(i = 180; i>0; i--){
+  for(i = 160; i>0; i--){
     MswFan::speed(i); 
     delay(10);	
   }
   // Counterclockwise rotation
   MswFan::direction(CCW);
-  for(i = 0; i<180; i++){
+  for(i = 0; i<160; i++){
     MswFan::speed(i);     
     delay(10);	
   }
-  for(i = 180; i>0; i--){
+  for(i = 160; i>0; i--){
     MswFan::speed(i); 
     delay(10);	
   }

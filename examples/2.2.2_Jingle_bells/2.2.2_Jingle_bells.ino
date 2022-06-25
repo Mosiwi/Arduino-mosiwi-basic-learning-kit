@@ -4,7 +4,7 @@
  Learning target:
   1. Music
   2. Function: sizeof()
-  3. Store operation: PROGMEM, pgm_read_word_near()
+  3. Store operation: PROGMEM, pgm_read_word_near(), pgm_read_float_near() ...
 	
  Web: http://mosiwi.com/
  Wiki: http://wiki.mosiwi.com/
@@ -59,7 +59,7 @@ int tune[]={
 
 // array of note beats
 // Store data in flash (program) memory instead of SRAM.
-const PROGMEM float durt[]={
+const float durt[] PROGMEM={
 	0.5,0.5,1,0.5,0.5,1,
 	0.5,0.5,0.75,0.25,1.5,0.5,
 	0.5,0.5,1,0.5,0.5,0.5,0.5,0.25,0.25,
@@ -91,7 +91,7 @@ void loop(){
 	for(int x=0;x<length;x++){
 		tone(buzzer_pin, tune[x]);
 		// 500 here is the unit of duration to control each note
-		delay(500*pgm_read_word_near(durt+x));					
+		delay(500*pgm_read_float_near(durt+x));					
 		noTone(buzzer_pin);
 	}
 	// The time interval to start the next cycle

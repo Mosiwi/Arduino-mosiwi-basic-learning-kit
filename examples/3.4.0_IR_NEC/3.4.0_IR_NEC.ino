@@ -16,16 +16,16 @@
  
 // Some useful constants
 #define USECPERTICK 50  // microseconds per clock interrupt tick
-#define RAWBUF 100      // Length of raw duration buffer
+#define RAWBUF 68       // Length of raw duration buffer
 
 // Pulse parms are *50-100 for the Mark and *50+100 for the space
 // First MARK is the one after the long gap
 // pulse parameters in usec
 #define NEC_HDR_MARK	9000
 #define NEC_HDR_SPACE	4500
-#define NEC_BIT_MARK	560
-#define NEC_ONE_SPACE	1600
-#define NEC_ZERO_SPACE	560
+#define NEC_BIT_MARK	562
+#define NEC_ONE_SPACE	2250-562
+#define NEC_ZERO_SPACE	1120-562
 #define NEC_RPT_SPACE	2250
 
 // Minimum map between transmissions
@@ -63,7 +63,6 @@
 #define SYSCLOCK 16000000
 
 // defines for timer2 (8 bits)
-#define TIMER_RESET
 #define TIMER_ENABLE_INTR     (TIMSK2 = _BV(OCIE2A))
 #define TIMER_DISABLE_INTR    (TIMSK2 = 0)
 #define TIMER_COUNT_TOP       ((SYSCLOCK / 8) * USECPERTICK / 1000000)
@@ -84,7 +83,7 @@ volatile irparams_t irparams;
 // Results returned from the decoder
 class decode_results {
 public:
-  int decode_type;               // NEC, SONY, RC5, UNKNOWN
+  int decode_type;               // NEC, UNKNOWN
   unsigned long value;           // Decoded value
   int bits;                      // Number of bits in decoded value
   volatile unsigned int *rawbuf; // Raw intervals in .5 us ticks
@@ -118,7 +117,6 @@ void IRreceiver::enableIRIn(){
   TIMER_CONFIG_NORMAL();
   //Timer2 Overflow Interrupt Enable
   TIMER_ENABLE_INTR;
-  TIMER_RESET;
   // enable interrupts
   sei();  
 
@@ -137,19 +135,18 @@ void IRreceiver::enableIRIn(){
 // First entry is the SPACE between transmissions.
 // As soon as a SPACE gets long, ready is set, state switches to IDLE, timing of SPACE continues.
 // As soon as first MARK arrives, gap width is recorded, ready is cleared, and new logging starts
-ISR(TIMER2_COMPA_vect)
-{
-  // Reset timer
-  TIMER_RESET;
+ISR(TIMER2_COMPA_vect){
   uint8_t irdata = (uint8_t)digitalRead(irparams.recvpin);
-  irparams.timer++; // One more 50us tick
-  if (irparams.rawlen >= RAWBUF) {
-    // Buffer overflow
+  if(irparams.timer < 2000)
+    irparams.timer++;               // One more 50us tick
+  if (irparams.rawlen > RAWBUF)     // Buffer overflow
     irparams.rcvstate = STATE_STOP;
-  }
   switch(irparams.rcvstate) {
-  case STATE_IDLE:            // In the middle of a gap
+  case STATE_IDLE:                  // In the middle of a gap
     if (irdata == MARK) {
+      // When there is no signal, the bus is at high level, and the counter will keep counting. 
+      // When the bus is at low level, it will immediately judge whether the counter is greater than 100. 
+      // If not, it means that the time interval between the two data is less than 100ms, and it will be judged as illegal data.
       if (irparams.timer < GAP_TICKS) {  
         // Greater than 96ms(108ms - 11.8ms = 96.2ms) between two data points. 	  
         // Not big enough to be a gap.
@@ -188,9 +185,6 @@ ISR(TIMER2_COMPA_vect)
     }
     break;
   case STATE_STOP:           // waiting, measuring gap
-    if (irdata == MARK) {    // reset gap timer
-      irparams.timer = 0;
-    }
     break;
   }
 }
@@ -224,7 +218,8 @@ int MATCH_SPACE(int measured_ticks, int desired_us) {return MATCH(measured_ticks
 // NECs have a repeat only 4 items long
 long IRreceiver::decodeNEC(decode_results *results) {
   long data = 0;
-  int offset = 1; // Skip first space
+  int offset = 1; // Skip the first space, the first data about 100ms, 
+                  // this is the data interval time, do not need to calculate.
   // Initial mark
   if (!MATCH_MARK(results->rawbuf[offset], NEC_HDR_MARK)) {
     return ERR;
@@ -239,14 +234,16 @@ long IRreceiver::decodeNEC(decode_results *results) {
     results->decode_type = NEC;
     return DECODED;
   }
+  // Check whether the number of received data is less than 68.
   if (irparams.rawlen < 2 * NEC_BITS + 4) {
     return ERR;
   }
-  // Initial space  
+  // Check whether the 4.5ms level is correct.  
   if (!MATCH_SPACE(results->rawbuf[offset], NEC_HDR_SPACE)) {
     return ERR;
   }
   offset++;
+  // Check and decode 4 data (address + address inverse + command + command inverse).
   for (int i = 0; i < NEC_BITS; i++) {
     if (!MATCH_MARK(results->rawbuf[offset], NEC_BIT_MARK)) {
       return ERR;
@@ -295,4 +292,3 @@ void loop() {
     irrecv.resume(); 
   }
 }
-

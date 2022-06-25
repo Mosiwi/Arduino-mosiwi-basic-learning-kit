@@ -3,7 +3,7 @@
  This example can only be used with only one DS18B20 on the bus and with external power supply.  
  
  Learning target:
-  1. Single bus protocol
+  1. Infrared Remote
   
  Web: http://mosiwi.com/
  Wiki: http://wiki.mosiwi.com/
@@ -23,7 +23,7 @@ MswIR IR(4);
 
 // For the led
 const byte R_led = 5;
-byte OnOff = 0;
+byte Ok = 0;
 
 void setup(){
   // The infrared receiver function is enabled
@@ -37,8 +37,8 @@ void setup(){
 void loop() {		
   // decode and store the decoded data.
   if (IR.decode()) {  
-    if(IR.value == 0xff38c7)
-      OnOff = ~OnOff;
+    if(IR.value == 0xff38c7)   // OK button
+      Ok = ~Ok;
   }
-  digitalWrite(R_led, OnOff);
+  digitalWrite(R_led, Ok);
 }

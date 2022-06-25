@@ -2,9 +2,7 @@
  This example works with the Mosiwi Basic learning board.
  
  Learning target:
-	1. Timer
-	2. Using library files
-	3. Variable modifier: static
+	1. Variable modifier: static
 	
  Web: http://mosiwi.com/
  Wiki: http://wiki.mosiwi.com/
@@ -23,7 +21,7 @@ const byte ledPin = 5;               // the number of the LED pin(Blue LED D5)
 // Interrupt function
 void flash(void) {  
   // The program is initialized only once when it runs.
-  static bool output = HIGH;
+  static bool output = true;
   
   digitalWrite(ledPin, output);
   output = !output;
@@ -36,7 +34,7 @@ void setup() {
   pinMode(ledPin, OUTPUT);
   
   // Set interrupt function
-  MsTimer2::set(500, flash); // 500ms period
+  MsTimer2::set(1000, flash); // 1000ms period
   
   // Start interrupt function
   MsTimer2::start();

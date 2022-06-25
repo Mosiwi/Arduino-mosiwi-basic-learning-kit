@@ -50,9 +50,6 @@ void GetKeyValue(void){
 
 // the setup function runs once when you press reset or power the board
 void setup() {
-  // initialize serial communications at 9600 bps:
-  Serial.begin(9600);
-  
   // Initialize the ultrasonic control pins
   pinMode(Trig, OUTPUT);
   pinMode(Echo, INPUT);

@@ -3,17 +3,17 @@
  
  Learning target:
 	1. LED
-	2. Arduino programs must have setup() and loop() functions
-	3. What is a programming statement?
-	4. Annotation symbols: //, /*...* /
-	5. Digital pin output settings function 
-	6. Function parameter
-	7. Use of the delay() function
+	2. What is a programming statement?
+	3. Function and parameter
+	4. Arduino programs must have setup() and loop() functions
+	5. Digital pin output Settings 
+	6. Use of the delay() function
+	7. Annotation symbols: //, /*...* /
 	
  Web: http://mosiwi.com/
  Wiki: http://wiki.mosiwi.com/
  Designer: jalen
- Date：2022-2-12
+ Date：2022-5-12
 */
 
 

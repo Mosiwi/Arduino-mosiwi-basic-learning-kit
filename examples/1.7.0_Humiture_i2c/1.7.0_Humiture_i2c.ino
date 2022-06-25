@@ -3,7 +3,7 @@
  
  Learning target:
 	1. i2c communication
-	2. Variable: float array
+	2. Variable: array
 	
  Web: http://mosiwi.com/
  Wiki: http://wiki.mosiwi.com/

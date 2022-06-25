@@ -2,11 +2,7 @@
  This example works with the Mosiwi Basic learning board.
  
  Learning target:
-	1. External_interrupt
-	2. Logical operator: !
-	3. Variable modifier: const, volatile
-	4. Loop statement: do...while
-	5. No return value function
+	1. Loop statement: do...while
 	
  Web: http://mosiwi.com/
  Wiki: http://wiki.mosiwi.com/
@@ -49,10 +45,10 @@ void loop() {
   //Loop statement
   do{
     digitalWrite(ledPin, LOW);
-  }while(state == LOW);
-  
-
+  }while(state == true);
+  delay(500);
   digitalWrite(ledPin, HIGH);
+  delay(500);
 }
 
 

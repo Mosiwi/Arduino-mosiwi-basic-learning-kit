@@ -91,6 +91,7 @@ class BC7278{
 	void ClearAll(void);
 	void ClearBit(byte Bit);
 	void DisplayChar(byte Bit, byte Dat);
+	void DisplayNumber(double num);
 	void DisplayNumber(float num);
 	void DisplayNumber(int num);
 	byte ReadKeyValue(void);

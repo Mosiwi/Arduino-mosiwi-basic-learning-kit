@@ -4,8 +4,6 @@
  Learning target:
 	1. spi communication
 	2. digital tube display, button
-	3. Forced variable conversion
-	4. system clock
 	
  Web: http://mosiwi.com/
  Wiki: http://wiki.mosiwi.com/
@@ -15,6 +13,17 @@
  //Include library file
 #include <MswDT_Button.h>
 
+//               A
+//           ----------
+//          |          |
+//        F |          | B
+//          |    G     |
+//           ----------   
+//          |          |
+//        E |          | C
+//          |    D     |
+//           ----------  o DP
+ 
 // Key value signal output flag pin.
 const byte keySignalPin = 3;         
 byte KeyValue = 0;
@@ -22,7 +31,7 @@ byte KeyValue = 0;
 // Interrupt function with no return value
 void GetKeyValue(void){
   //            bit: 0 0 0 0 x x x x
-  // Read key value: 0 0 0 0 U L R D
+  // Read key value: 0 0 0 0 U D L R
   KeyValue = DTB.ReadKeyValue();
 }
 
@@ -32,7 +41,7 @@ void setup() {
   
   // Initialize the 8-segment digital display tube and keys through SPI communication. 
   pinMode(keySignalPin, INPUT_PULLUP);
-  attachInterrupt(digitalPinToInterrupt(keySignalPin), GetKeyValue, CHANGE);
+  attachInterrupt(digitalPinToInterrupt(keySignalPin), GetKeyValue, FALLING);
   
   // Initialize SPI communications.
   DTB.Start_Init();
@@ -50,7 +59,7 @@ void setup() {
   
   // display segment
   // Bit: 0--3 
-  // Seg = xxxxxxxx = DP, G, F, E, D, C, B, A (x=1=on, x=0=off)
+  // Seg = xxxxxxxx = DP, G, F, E, D, C, B, A (x=1=off, x=0=on)
   // DTB.SetDisplayReg(byte Bit, byte Seg);
 	
   // set segment flash 
@@ -83,7 +92,7 @@ void loop() {
   float Num = float(KeyValue);
   // prints data with ending line break     
   
-  if(Num != 0){
+  if(Num != 0.0){
     // float parameter: num = 0.0-999.9
 	// int parameter: num = 0-9999
     DTB.DisplayNumber(Num);
@@ -91,8 +100,9 @@ void loop() {
 	delay(100);
 	
 	//            bit: 0 0 0 0 x x x x
-    // Read key value: 0 0 0 0 U L R D
+    // Read key value: 0 0 0 0 U D L R
     Serial.println(KeyValue); 
+	KeyValue = 0.0;
   }
 }
 

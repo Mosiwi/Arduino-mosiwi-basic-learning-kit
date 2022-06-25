@@ -30,7 +30,9 @@ void BC7278::Start_Init(void){
   //              and is sampled on the second clock edge (rising edge).
   // Note: The clock frequency of write data can be 125KHz, and that of read data must be less than 64KHz.  
   SPI.beginTransaction(SPISettings(125000, MSBFIRST, SPI_MODE3));      
-  SPI.endTransaction(); 
+  SPI.endTransaction();
+  digitalWrite(SS, LOW); 
+  delay(28);    // Necessary delay time.
 }
 
 ////////////////////////////////////////////
@@ -78,7 +80,7 @@ void BC7278::BC7278_spi_write_data(byte addr, byte dat){
   //BC7278_spi_start();
   SPI.transfer16(data); 
   //BC7278_spi_stop();
-  delay(28);   // Necessary delay time.
+  delay(10);   // Necessary delay, standard is 28ms.
 }
 
 ////////////////////////////////////////////
@@ -181,6 +183,12 @@ void BC7278::DisplayChar(byte Bit, byte Dat){
 
 ////////////////////////////////////////////
 // display: 0.0-999.9
+void BC7278::DisplayNumber(double num){
+  DisplayNumber(float(num));
+}
+
+////////////////////////////////////////////
+// display: 0.0-999.9
 void BC7278::DisplayNumber(float num){
   if(num > 999.9)
     return;
@@ -227,15 +235,22 @@ void BC7278::DisplayNumber(int num){
     DisplayChar(3, dat%10);
     return;
   }
+  if(dat%1000/10 != 0){
+    ClearBit(0); 
+	ClearBit(1); 
+    DisplayChar(2, dat%100/10);
+    DisplayChar(3, dat%10);
+    return;
+  }
   ClearBit(0); 
   ClearBit(1);
-  DisplayChar(2, dat%100/10);
+  ClearBit(2);
   DisplayChar(3, dat%10);
 }
 
 ////////////////////////////////////////////
 //            bit: 0 0 0 0 x x x x
-// Read key value: 0 0 0 0 U L R D
+// Read key value: 0 0 0 0 U D L R
 // x = 1, There's no button to press. 
 // x = 0, There are buttons to press.
 byte BC7278::ReadKeyValue(void){ 	

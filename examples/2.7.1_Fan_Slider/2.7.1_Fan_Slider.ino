@@ -2,7 +2,7 @@
  This example works with the Mosiwi Basic learning board.
  
  Learning target:
-	1. fan
+	1. Control the fan
 	
  Web: http://mosiwi.com/
  Wiki: http://wiki.mosiwi.com/
@@ -36,11 +36,11 @@ void loop() {
   int analogValue = analogRead(analogInPin);
 
   // Convert 0-1010 data to 0-255 data.
-  byte fanSpeed = map(analogValue, 0, 1010, 0, 255);
+  byte fanSpeed = map(analogValue, 0, 1020, 0, 255);
   MswFan::speed(fanSpeed);
   
   // Fan speed indicator.
-  byte ledNum = map(analogValue, 0, 1010, 0, 8);
+  byte ledNum = map(analogValue, 0, 1020, 0, 8);
   byte displayData = 0;
   while(ledNum > 0){
 	// same as: displayData = displayData | (1 << (ledNum-1));

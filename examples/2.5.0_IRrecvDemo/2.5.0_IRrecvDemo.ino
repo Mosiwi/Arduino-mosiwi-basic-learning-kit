@@ -3,7 +3,7 @@
  This example can only be used with only one DS18B20 on the bus and with external power supply.  
  
  Learning target:
-  1. Single bus protocol
+  1. infrared receiver 
   
  Web: http://mosiwi.com/
  Wiki: http://wiki.mosiwi.com/
@@ -37,6 +37,7 @@ void loop() {
   //0xff10ef: ◄
   //0xff5aa5: ►
   //0xff38c7: OK
+  //0xff9867: 0
   //0xffa25d: 1
   //0xff629d: 2
   //0xffe21d: 3
@@ -44,7 +45,8 @@ void loop() {
   //0xff02fd: 5
   //0xffc23d: 6
   //0xffe01f: 7
-  //0xffa857: 8		
+  //0xffa857: 8	
+  //0xff906f: 9  
   //0xff6897: *   
   //0xffb04f: #   
 		

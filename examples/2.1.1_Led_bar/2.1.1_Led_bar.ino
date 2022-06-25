@@ -3,9 +3,10 @@
  
  Learning target:
 	1. Math function: map()
-	2. Judgment statement: switch
-	3. break statement: break
+	2. break statement: break
+	3. Judgment statement: switch
 	4. binary number, Decimal number, Hexadecimal number
+	5. Control the led bar
 	
  Web: http://mosiwi.com/
  Wiki: http://wiki.mosiwi.com/

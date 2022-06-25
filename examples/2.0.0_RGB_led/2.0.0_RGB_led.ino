@@ -2,8 +2,9 @@
  This example works with the Mosiwi Basic learning board.
  
  Learning target:
-	1. Control R,G,B led
-	2. Preprocessor: #define
+	1. What is Resistor？
+	2. Controls R,G,B leds.
+	3. Preprocessor: #define
 	
  Web: http://mosiwi.com/
  Wiki: http://wiki.mosiwi.com/
@@ -15,7 +16,7 @@
 
 const byte R_led = 5;
 const byte G_led = 6;
-const byte B_led = 7;
+const byte B_led = 10;
 
 // the setup function runs once when you press reset or power the board
 void setup(){

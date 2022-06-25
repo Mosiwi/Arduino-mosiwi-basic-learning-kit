@@ -3,28 +3,32 @@
  
  Learning target:
 	1. Button
-	2. Digital pin input Settings: INPUT, INPUT_PULLUP, OUTPUT (HIGH, LOW)
-	3. Variable: byte, global variable
-	4. Relational operator: ==, !=
-	5. Assignment operator: =
+	2. Variable: byte, global variable
+	3. Assignment operator: =
+	4. Digital pin input Settings
+	5. Relational operator: ==, !=
 	6. Judgment statement: if
 	
  Web: http://mosiwi.com/
  Wiki: http://wiki.mosiwi.com/
  Designer: jalen
- Date：2022-2-12
+ Date：2022-5-13
 */
 
-// Global variable. They're used here to set pin numbers:
-byte buttonPin = 2;          // the number of the pushbutton pin(Button D2)
-byte ledPin    = 5;          // the number of the LED pin(Blue LED D5)
-
-// Global variable
-byte buttonState = 0;        // variable for reading the pushbutton status
-
+// Global variable. 
+byte buttonPin;          
+byte ledPin;          
+byte buttonState;         
 
 // the setup function runs once when you press reset or power the board
 void setup() {
+  // the number of the pushbutton pin(Button D2)
+  buttonPin   = 2; 
+  // the number of the LED pin(Blue LED D5)     
+  ledPin      = 5;
+  // variable for reading the pushbutton status         
+  buttonState = 0; 
+
   // initialize the LED pin as an output:
   pinMode(ledPin, OUTPUT);
   // initialize the pushbutton pin as an input:

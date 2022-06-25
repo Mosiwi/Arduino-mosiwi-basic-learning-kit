@@ -291,8 +291,8 @@ float Temperature::getTempC(void){
     return ((float)temp) * 0.0625;	
 }
 
-// Define a temperature object ds18b20, using pin 10
-Temperature ds18b20(10);
+// Define a temperature object ds18b20, using pin 7
+Temperature ds18b20(7);
 
 void setup(){
 	Serial.begin(9600);
@@ -303,6 +303,8 @@ void setup(){
 }
 
 void loop() {
-	Serial.println(ds18b20.getTempC());
+	Serial.print("Temperature: ");
+	Serial.print(ds18b20.getTempC());
+	Serial.println(" C");
 	delay(1000);
 }

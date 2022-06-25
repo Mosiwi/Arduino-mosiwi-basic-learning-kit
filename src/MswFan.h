@@ -25,8 +25,8 @@
 #endif
 #endif
 
-uint8_t CW  = 1;
-uint8_t CCW = 0;
+uint8_t CW  = 0;
+uint8_t CCW = 1;
 
 namespace MswFan{
   // Timer timing 0.01ms.
@@ -45,14 +45,14 @@ namespace MswFan{
 
   // A function that interrupts execution	
   void fanRun(void){
-    if(fan_cw_ccw){     // CW
+    if(fan_cw_ccw){     // CCW
 	  digitalWrite(fan_in2, LOW);
 	  if(timerCounter < fanSpeed){
 	    digitalWrite(fan_in1, HIGH);
 	  }else{
 	    digitalWrite(fan_in1, LOW);
 	  }
-    }else{  // CCW
+    }else{  // CW
 	  digitalWrite(fan_in1, LOW);
 	  if(timerCounter < fanSpeed){
 	    digitalWrite(fan_in2, HIGH);
@@ -84,7 +84,7 @@ namespace MswFan{
     #endif
   }
   
-  // set speed: 0 --- 255
+  // Speed allowed range: 0-255
   void speed(uint8_t sp){
 	if(sp > 255 || sp < 0)
 	  return;
@@ -119,6 +119,9 @@ namespace MswFan{
     #ifdef FAN_USE_TIMER2
     MsTimer2::stop();
     #endif
+	
+	digitalWrite(fan_in1, LOW);
+	digitalWrite(fan_in2, LOW);
   }
 };
 

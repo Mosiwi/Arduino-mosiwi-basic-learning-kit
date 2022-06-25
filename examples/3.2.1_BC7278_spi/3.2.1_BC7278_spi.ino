@@ -91,6 +91,8 @@ void Start_Init(void){
   // Note: The clock frequency of write data can be 125KHz, and that of read data must be less than 64KHz.
   SPI.beginTransaction(SPISettings(125000, MSBFIRST, SPI_MODE3));    
   SPI.endTransaction(); 
+  digitalWrite(SS, LOW); 
+  delay(28);    // Necessary delay time.
 }
 
 ////////////////////////////////////////////

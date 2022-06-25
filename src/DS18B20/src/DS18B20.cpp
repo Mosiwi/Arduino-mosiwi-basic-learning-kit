@@ -125,9 +125,9 @@ void DS18B20::setResolution(uint8_t resolution) {
             break;
     }
 
-    if (resolution > globalResolution) {
+    //if (resolution > globalResolution) {
         globalResolution = resolution;
-    }
+    //}
 
     writeScratchpad();
 }
