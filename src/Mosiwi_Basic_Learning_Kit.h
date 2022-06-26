@@ -11,7 +11,7 @@
 #define Mosiwi_Basic_Learning_Kit_h
 #include <Arduino.h>
 
-# Don't use.
+//Don't use.
 
 
 #endif
