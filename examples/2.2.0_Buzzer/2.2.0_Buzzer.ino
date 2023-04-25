@@ -2,19 +2,18 @@
  This example works with the Mosiwi Basic learning board.
  
  Learning target:
-  1. Buzzer
-  2. MOSFET  
-  3. function: tone(), notone()
+  1. Buzzer 
+  2. function: tone(), notone()
      https://www.arduino.cc/reference/en/language/functions/advanced-io/tone/
 	
- Web: http://mosiwi.com/
- Wiki: http://wiki.mosiwi.com/
+ Web: http://mosiwi.com
+ Wiki: https://mosiwi-wiki.readthedocs.io
  Designer: jalen
  Date：2022-4-3
 */
 
-// Define the buzzer using the 9 pin of the M328 PRO.
-byte BuzzerPin   = 9;        
+// Define the buzzer using the 10 pin of the M328 PRO(UNO R3).
+byte BuzzerPin   = 10;        
 
 void setup() {
   // Syntax:

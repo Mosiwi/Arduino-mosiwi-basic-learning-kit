@@ -6,8 +6,8 @@
   2. Function: sizeof()
   3. Store operation: PROGMEM, pgm_read_word_near(), pgm_read_float_near() ...
 	
- Web: http://mosiwi.com/
- Wiki: http://wiki.mosiwi.com/
+ Web: http://mosiwi.com
+ Wiki: https://mosiwi-wiki.readthedocs.io
  Designer: jalen
  Date：2022-4-19
 */
@@ -77,7 +77,7 @@ const float durt[] PROGMEM={
 };
 
 // Define buzzer pin, note length variable.
-int buzzer_pin = 9;
+int buzzer_pin = 10;
 int length;
 
 void setup(){

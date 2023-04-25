@@ -4,8 +4,8 @@
  Learning target:
   1. The relationship between frequency and tone.
 	
- Web: http://mosiwi.com/
- Wiki: http://wiki.mosiwi.com/
+ Web: http://mosiwi.com
+ Wiki: https://mosiwi-wiki.readthedocs.io
  Designer: jalen
  Date：2022-4-6
 */
@@ -13,10 +13,10 @@
 #include <MswDT_Button.h>
 #include <MswLed.h>
 
-// Define the buzzer using the 9 pin of the M328 PRO.
-byte BuzzerPin   = 9; 
+// Define the buzzer using the 10 pin of the M328 PRO(UNO R3).
+byte BuzzerPin   = 10; 
 // Analog input pin that the potentiometer is attached to       
-byte analogInPin = A7;    
+byte analogInPin = A3;    
    
 void setup() {
   // Initialize the 8-segment digital display tube and keys through SPI communication.

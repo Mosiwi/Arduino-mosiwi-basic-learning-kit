@@ -4,14 +4,14 @@
  Learning target:
 	1. microphone
 	
- Web: http://mosiwi.com/
- Wiki: http://wiki.mosiwi.com/
+ Web: http://mosiwi.com
+ Wiki: https://mosiwi-wiki.readthedocs.io
  Designer: jalen
  Date：2022-2-12
  */
  
 // Analog input pin that the microphone is attached to
-byte microphoneInPin = A6;       
+byte microphoneInPin = A2;       
 
 int voiceAnalogValue     = 0;   // Used to store analog value of microphone
 float voiceVoltageValue  = 0;   // Used to store voltage value of microphone

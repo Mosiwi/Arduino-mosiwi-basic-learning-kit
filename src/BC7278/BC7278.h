@@ -1,8 +1,7 @@
 /*
  * Project: BC7278 hardware spi
  * Function: Display 8 segments of nixie tube and read key values
- * Github: https://github.com/mosiwi
- * Wiki: http://wiki.mosiwi.com
+ * Wiki: https://mosiwi-wiki.readthedocs.io
  * Web: http://mosiwi.com
  * Engineer: Jalen
  * date: 2022-3-11
@@ -16,16 +15,18 @@
 
 class BC7278{
 	
-  //               A
-  //           ----------
-  //          |          |
-  //        F |          | B
-  //          |    G     |
-  //           ----------   
-  //          |          |
-  //        E |          | C
-  //          |    D     |
-  //           ----------  o DP
+//               A                       A                       A                       A
+//           ----------              ----------              ----------              ----------
+//          |          |            |          |            |          |            |          |
+//        F |          | B        F |          | B        F |          | B        F |          | B
+//          |    G     |            |    G     |            |    G     |            |    G     |
+//           ----------              ----------              ----------              ----------   
+//          |          |            |          |            |          |            |          |
+//        E |          | C        E |          | C        E |          | C        E |          | C
+//          |    D     |            |    D     |            |    D     |            |    D     |
+//           ----------  o DP        ----------  o DP        ----------  o DP        ----------  o DP
+//           
+//              DG0                     DG1                     DG2                     DG3 
   
   public:
     enum element{
@@ -84,13 +85,13 @@ class BC7278{
 	unsigned int  BC7278_spi_read_data(byte addr, byte dat);
 	void BC7278_spi_write_data(byte addr, byte dat);
 	void SetDisplaySeg(byte Seg, byte OnOff);
-	void SetDisplayReg(byte Bit, byte Seg);
-	void SetSegFlash(byte Bit, byte Seg);
-	void SetBitFlash(byte Bit);
+	void SetDisplayReg(byte DG, byte Seg);
+	void SetSegFlash(byte DG, byte Seg);
+	void SetDgFlash(byte DG);
 	void SetFlashSpeed(byte Speed);
 	void ClearAll(void);
-	void ClearBit(byte Bit);
-	void DisplayChar(byte Bit, byte Dat);
+	void ClearBit(byte DG);
+	void DisplayChar(byte DG, byte Dat);
 	void DisplayNumber(double num);
 	void DisplayNumber(float num);
 	void DisplayNumber(int num);

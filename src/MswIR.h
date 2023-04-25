@@ -2,7 +2,7 @@
  This example works with the Mosiwi Basic learning board.
  
  Web: http://mosiwi.com/
- Wiki: http://wiki.mosiwi.com/
+ Wiki: https://mosiwi-wiki.readthedocs.io
  Designer: jalen
  Date：2022-3-17
  */

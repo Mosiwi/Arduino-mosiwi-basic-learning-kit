@@ -1,10 +1,8 @@
 /*
  * Project: AHT20 soft i2c
  * Function: Read temperature and humidity
- * I2C communication protocol: http://wiki.mosiwi.com/images/c/c0/UM10204%28I2C_Bus_Specification_and_User_Manual_%29.pdf
  * I2C communication protocol: http://www.i2c-bus.org/references/
- * Github: https://github.com/mosiwi
- * Wiki: http://wiki.mosiwi.com
+ * Wiki: https://mosiwi-wiki.readthedocs.io
  * Web: http://mosiwi.com
  * Engineer: Jalen
  * date: 2022-3-11

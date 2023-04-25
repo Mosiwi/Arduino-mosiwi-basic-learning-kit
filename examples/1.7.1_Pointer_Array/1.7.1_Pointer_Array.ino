@@ -4,8 +4,8 @@
  Learning target:
 	1. Variable: array, pointer
 	
- Web: http://mosiwi.com/
- Wiki: http://wiki.mosiwi.com/
+ Web: http://mosiwi.com
+ Wiki: https://mosiwi-wiki.readthedocs.io
  Designer: jalen
  Date：2022-2-12
 */
@@ -53,8 +53,7 @@ void loop() {
   Serial.print(p2[1]); 
   Serial.println(p2[2]);  
   
-  Serial.println(" "); 
-  delay(2000);              
+  while(1);             
 }
 
 

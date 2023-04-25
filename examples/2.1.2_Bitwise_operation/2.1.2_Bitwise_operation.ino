@@ -4,19 +4,19 @@
  Learning target:
 	1. Bitwise operators: &, |, ~, ^, <<, >>
 	
- Web: http://mosiwi.com/
- Wiki: http://wiki.mosiwi.com/
+ Web: http://mosiwi.com
+ Wiki: https://mosiwi-wiki.readthedocs.io
  Designer: jalen
  Date：2022-4-2
 */
 #include <MswLed.h>
 
-byte ok  = 2;
+byte button  = 2;
 void setup() {
   // Initialize the control pin of led
   // Parameter1 = ST_CP, Parameter2 = SH_CP, Parameter3 = DS
   Init_LED_IO(8, A1, A0);
-  pinMode(ok, INPUT);
+  pinMode(button, INPUT);
 }
 
 void loop() { 
@@ -25,8 +25,8 @@ void loop() {
   // LED   : Q7   Q6   Q5   Q4   Q3   Q2   Q1   Q0
   // State : ON   OFF  ON   OFF  ON   OFF  ON   OFF
   SetLedBar(led);
-  while(digitalRead(ok)==HIGH);
-  while(digitalRead(ok)==LOW);
+  while(digitalRead(button)==HIGH);
+  while(digitalRead(button)==LOW);
   
   // Binary AND Operator
   //       0b10101010
@@ -36,8 +36,8 @@ void loop() {
   // LED   : Q7   Q6   Q5   Q4   Q3   Q2   Q1   Q0
   // State : ON   OFF  ON   OFF  OFF  OFF  OFF  OFF
   SetLedBar(led);
-  while(digitalRead(ok)==HIGH);
-  while(digitalRead(ok)==LOW);
+  while(digitalRead(button)==HIGH);
+  while(digitalRead(button)==LOW);
   
   // Binary OR Operator
   //       0b10100000
@@ -47,8 +47,8 @@ void loop() {
   // LED   : Q7   Q6   Q5   Q4   Q3   Q2   Q1   Q0
   // State : ON   ON   ON   ON   OFF  OFF  OFF  OFF
   SetLedBar(led);   
-  while(digitalRead(ok)==HIGH);
-  while(digitalRead(ok)==LOW);
+  while(digitalRead(button)==HIGH);
+  while(digitalRead(button)==LOW);
    
   // Binary take the inverse operation
   //     ~ 0b11110000
@@ -57,8 +57,8 @@ void loop() {
   // LED   : Q7   Q6   Q5   Q4   Q3   Q2   Q1   Q0
   // State : OFF  OFF  OFF  OFF  ON   ON   ON   ON
   SetLedBar(led);   
-  while(digitalRead(ok)==HIGH);
-  while(digitalRead(ok)==LOW);
+  while(digitalRead(button)==HIGH);
+  while(digitalRead(button)==LOW);
   
   // Binary Xor Operator
   //       0b00001111
@@ -68,8 +68,8 @@ void loop() {
   // LED   : Q7   Q6   Q5   Q4   Q3   Q2   Q1   Q0
   // State : OFF  OFF  OFF  ON   OFF  OFF  OFF  ON 
   SetLedBar(led);   
-  while(digitalRead(ok)==HIGH);
-  while(digitalRead(ok)==LOW);  
+  while(digitalRead(button)==HIGH);
+  while(digitalRead(button)==LOW);  
 
   // Binary left shift operator
   //       0b00010001 << 7
@@ -78,8 +78,8 @@ void loop() {
   // LED   : Q7   Q6   Q5   Q4   Q3   Q2   Q1   Q0
   // State : ON   OFF  OFF  OFF  OFF  OFF  OFF  OFF  
   SetLedBar(led);   
-  while(digitalRead(ok)==HIGH);
-  while(digitalRead(ok)==LOW);
+  while(digitalRead(button)==HIGH);
+  while(digitalRead(button)==LOW);
  
   // Binary right shift operator
   //       0b10000000 >> 7
@@ -88,8 +88,8 @@ void loop() {
   // LED   : Q7   Q6   Q5   Q4   Q3   Q2   Q1   Q0
   // State : OFF  OFF  OFF  OFF  OFF  OFF  OFF  ON  
   SetLedBar(led);   
-  while(digitalRead(ok)==HIGH);
-  while(digitalRead(ok)==LOW);
+  while(digitalRead(button)==HIGH);
+  while(digitalRead(button)==LOW);
 }
 
 

@@ -1,8 +1,7 @@
 /*
  * Project: BC7278 hardware spi
  * Function: Display 8 segments of nixie tube and read key values
- * Github: https://github.com/mosiwi
- * Wiki: http://wiki.mosiwi.com
+ * Wiki: https://mosiwi-wiki.readthedocs.io
  * Web: http://mosiwi.com
  * Engineer: Jalen
  * date: 2022-3-11
@@ -46,8 +45,8 @@ unsigned int BC7278::BC7278_spi_read_data(byte addr, byte dat){
   
   // Another option I saw was to prescale the clock to 8 mHz by using this in the setup:
   // clock: 125k/2 = 62.5K
-  CLKPR = 0b10000000;
-  CLKPR = 0b00000001;
+  CLKPR = 0b10000000;        // Enable to modify the system clock.
+  CLKPR = 0b00000001;        // Writes the modified value of the system clock.
   delayMicroseconds(100);
   // So use one of the other prescale values:
   // 0b0000000 = 0 (16 MHz)
@@ -57,6 +56,7 @@ unsigned int BC7278::BC7278_spi_read_data(byte addr, byte dat){
   // 0b0000100 = 16 (1 MHz)
   // ...
   // 0b0001000 = 256 (62 kHz)
+  // ...       = Reserved
    
   data = SPI.transfer16(data);
 	
@@ -102,11 +102,11 @@ void BC7278::SetDisplaySeg(byte Seg, byte OnOff){
 
 ////////////////////////////////////////////
 // display segment
-// Bit: 0--3 
+// DG: 0--3 
 // Seg = xxxxxxxx = DP, G, F, E, D, C, B, A (x=0=on, x=1=off)
-void BC7278::SetDisplayReg(byte Bit, byte Seg){
+void BC7278::SetDisplayReg(byte DG, byte Seg){
   byte addr;
-  switch(Bit){
+  switch(DG){
     case 0: addr = DisReg0; break;
     case 1: addr = DisReg1; break;
     case 2: addr = DisReg2; break;
@@ -118,10 +118,11 @@ void BC7278::SetDisplayReg(byte Bit, byte Seg){
 
 ////////////////////////////////////////////
 // set segment flash 
+// DG: 0--3
 // Seg = xxxxxxxx = DP, G, F, E, D, C, B, A (x=1=on, x=0=off)
-void BC7278::SetSegFlash(byte Bit, byte Seg){
+void BC7278::SetSegFlash(byte DG, byte Seg){
   byte BitAddr;
-  switch(Bit){
+  switch(DG){
     case 0: BitAddr = SegFlaReg0; break;
     case 1: BitAddr = SegFlaReg1; break;
     case 2: BitAddr = SegFlaReg2; break;
@@ -132,13 +133,13 @@ void BC7278::SetSegFlash(byte Bit, byte Seg){
 }
 
 ////////////////////////////////////////////
-// set bit flash 
-// Bit = D7 D6 D5 D4 D3 D2 D1 D0
-//       -- -- -- -- b3 b2 b1 b0 (1=flash, 0=not flash)
-void BC7278::SetBitFlash(byte Bit){
-  if(Bit > 15)
+  // set DGx flash 
+  // GD = B7  B6  B5  B4  B3  B2  B1  B0 (binary)
+  //      --  --  --  --  DG3 DG2 DG1 DG0 (1=flash, 0=not flash)
+void BC7278::SetDgFlash(byte DG){
+  if(DG > 15)
     return;
-  BC7278_spi_write_data(BitFlaReg, Bit);
+  BC7278_spi_write_data(BitFlaReg, DG);
 }
 
 ////////////////////////////////////////////
@@ -149,10 +150,10 @@ void BC7278::SetFlashSpeed(byte Speed){
 }
 
 ////////////////////////////////////////////
-// Clear the screen or light up all leds.
+// Clear the screen.
 void BC7278::ClearAll(void){
   BC7278_spi_write_data(GloReg, 0xff);  // turn off all segment
-  SetBitFlash(0x00);      // turn off all bit flash. 
+  SetDgFlash(0x00);      // turn off all bit flash. 
   SetSegFlash(0, 0x00);   // turn off bit0 flash 
   SetSegFlash(1, 0x00);   // turn off bit1 flash 
   SetSegFlash(2, 0x00);   // turn off bit2 flash 
@@ -161,23 +162,23 @@ void BC7278::ClearAll(void){
 
 ////////////////////////////////////////////
 // Clear one bit display.
-// Bit = 0--3
-void BC7278::ClearBit(byte Bit){
-  SetDisplayReg(Bit, 0xff);       // Closes all display segments of bit
-  BitFlashData = BitFlashData & (0xfe << Bit); 
-  SetBitFlash(BitFlashData);      // turn off one bit flash.  
-  SetSegFlash(Bit, 0x00);         // Turn off all segment flashing for the corresponding bit.
+// DG = 0--3
+void BC7278::ClearBit(byte DG){
+  SetDisplayReg(DG, 0xff);       // Closes all display segments of bit
+  BitFlashData = BitFlashData & (0xfe << DG); 
+  SetDgFlash(BitFlashData);      // turn off one bit flash.  
+  SetSegFlash(DG, 0x00);         // Turn off all segment flashing for the corresponding bit.
 }
 
 ////////////////////////////////////////////
 // display: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A,  b,  C,  d,  E,  F
 // Dat    : 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15
-// Bit    : 0, 1, 2, 3
-void BC7278::DisplayChar(byte Bit, byte Dat){
-  if(Bit > 3 || Dat > 15)
+// DG    : 0, 1, 2, 3
+void BC7278::DisplayChar(byte DG, byte Dat){
+  if(DG > 3 || Dat > 15)
     return;
   byte dat = 0;
-  dat = (Bit << 4)| Dat; 
+  dat = (DG << 4)| Dat; 
   BC7278_spi_write_data(DecReg, dat);
 }
 
@@ -249,8 +250,8 @@ void BC7278::DisplayNumber(int num){
 }
 
 ////////////////////////////////////////////
-//            bit: 0 0 0 0 x x x x
-// Read key value: 0 0 0 0 U D L R
+//            bit: 0 0 0 x x x x x
+// Read key value: 0 0 0 U D L R OK
 // x = 1, There's no button to press. 
 // x = 0, There are buttons to press.
 byte BC7278::ReadKeyValue(void){ 	
@@ -260,7 +261,7 @@ byte BC7278::ReadKeyValue(void){
 	// Serial.println(AllKey, HEX);
 	
 	// After processing data, obtain the key values of S12-S15.
-    byte keyValue = byte((~AllKey) >> 12);
+    byte keyValue = byte((~AllKey) >> 11);
 	// Serial.println(keyValue, HEX);
 	
 	return keyValue;

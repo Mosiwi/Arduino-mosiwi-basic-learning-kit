@@ -1,8 +1,7 @@
 /*
  * Project: AHT20 hardware i2c
  * Function: Read temperature and humidity
- * Github: https://github.com/mosiwi
- * Wiki: http://wiki.mosiwi.com
+ * Wiki: https://mosiwi-wiki.readthedocs.io
  * Web: http://mosiwi.com
  * Engineer: Jalen
  * date: 2022-3-11

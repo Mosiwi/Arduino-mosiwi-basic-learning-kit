@@ -6,8 +6,8 @@
 	2. Timer
 	3. Variable: bool 
 	
- Web: http://mosiwi.com/
- Wiki: http://wiki.mosiwi.com/
+ Web: http://mosiwi.com
+ Wiki: https://mosiwi-wiki.readthedocs.io
  Designer: jalen
  Date：2022-3-20
  */
@@ -15,7 +15,7 @@
 #include <MswTimer1.h>
 
 // Defining character variables: 
-const byte ledPin = 5;               // the number of the LED pin(Blue LED D5)
+const byte ledPin = 5;               // the number of the LED pin(Red LED D5)
 // The program is initialized only once when it runs.
 bool output = true;
   

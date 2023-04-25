@@ -7,14 +7,14 @@
 	3. Arithmetic operator: --, ++
 	4. Relational operator: >, <, >=, <=
 	
- Web: http://mosiwi.com/
- Wiki: http://wiki.mosiwi.com/
+ Web: http://mosiwi.com
+ Wiki: https://mosiwi-wiki.readthedocs.io
  Designer: jalen
  Date：2022-3-20
  */
 
 // These constants won't change. They're used to give names to the pins used:
-const byte pwmOutPin   = 5;         // Analog output pin that the LED(D5) is attached to
+const byte pwmOutPin   = 5;         // Define the PWM pin(Red LED D5)
 int pwmValue    = 0;                // value output to the PWM (analog out)
 
 

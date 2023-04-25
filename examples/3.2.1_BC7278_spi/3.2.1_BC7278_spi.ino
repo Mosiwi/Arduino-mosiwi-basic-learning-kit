@@ -1,8 +1,7 @@
 /*
  * Project: BC7278 hardware spi
  * Function: Display 8 segments of nixie tube and read key values
- * Github: https://github.com/mosiwi
- * Wiki: http://wiki.mosiwi.com
+ * Wiki: https://mosiwi-wiki.readthedocs.io
  * Web: http://mosiwi.com
  * Engineer: Jalen
  * date: 2022-3-11
@@ -13,16 +12,18 @@
 byte ButtonPin = 3;    
 byte KeyValue = 0;
 
-//               A
-//           ----------
-//          |          |
-//        F |          | B
-//          |    G     |
-//           ----------   
-//          |          |
-//        E |          | C
-//          |    D     |
-//           ----------  o DP
+//               A                       A                       A                       A
+//           ----------              ----------              ----------              ----------
+//          |          |            |          |            |          |            |          |
+//        F |          | B        F |          | B        F |          | B        F |          | B
+//          |    G     |            |    G     |            |    G     |            |    G     |
+//           ----------              ----------              ----------              ----------   
+//          |          |            |          |            |          |            |          |
+//        E |          | C        E |          | C        E |          | C        E |          | C
+//          |    D     |            |    D     |            |    D     |            |    D     |
+//           ----------  o DP        ----------  o DP        ----------  o DP        ----------  o DP
+//           
+//              DG0                     DG1                     DG2                     DG3 
 
 // They correspond to 4-bit digital tube and can control 8 digital sections of the code tube.
 // default = 0xff, bit: on = 0, off = 1
@@ -268,7 +269,7 @@ void DisplayNumber(float num){
 
 ////////////////////////////////////////////
 //            bit: 0 0 0 0 x x x x
-// Read key value: 0 0 0 0 U L R D
+// Read key value: 0 0 0 U L R D OK
 byte ReadKeyValue(void){   
     // 0xff: pseudoinstruction
 	// Gets 16 key values
@@ -276,7 +277,7 @@ byte ReadKeyValue(void){
 	// Serial.println(AllKey, HEX);
 	
 	// After processing data, obtain the key values of S12-S15.
-    byte keyValue = byte((~AllKey) >> 12);
+    byte keyValue = byte((~AllKey) >> 11);
 	// Serial.println(keyValue, HEX);
 	return keyValue;
 }
@@ -284,8 +285,8 @@ byte ReadKeyValue(void){
 ////////////////////////////////////////////
 // Interrupt function with no return value
 void GetKeyValue(void){
-  //            bit: 0 0 0 0 x x x x
-  // Read key value: 0 0 0 0 U L R D
+  //            bit: 0 0 0 x x x x x
+  // Read key value: 0 0 0 U L R D OK
   KeyValue = ReadKeyValue();
 }
 
@@ -329,8 +330,8 @@ void setup() {
   // set flash speed： 0--255
   // SetFlashSpeed(byte Speed);
   
-  // Clear the screen or light up all leds.
-  // ClearAll();
+  // Clear the screen.
+  ClearAll();
 
   // Clear one bit display.
   // Bit = 0--3
@@ -355,8 +356,8 @@ void loop() {
 	// It is recommended that the refresh interval be at least 100ms
 	delay(100);
 	
-    //            bit: 0 0 0 0 x x x x
-    // Read key value: 0 0 0 0 U L R D
+    //            bit: 0 0 0 x x x x x
+    // Read key value: 0 0 0 U L R D OK
 	// x = 1, There's no button to press. 
 	// x = 0, There are buttons to press.
     Serial.println(KeyValue); 

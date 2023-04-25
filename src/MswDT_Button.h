@@ -1,8 +1,7 @@
 /*
  * Project: BC7278 hardware spi
  * Function: Display 8 segments of nixie tube and read key values
- * Github: https://github.com/mosiwi
- * Wiki: http://wiki.mosiwi.com
+ * Wiki: https://mosiwi-wiki.readthedocs.io
  * Web: http://mosiwi.com
  * Engineer: Jalen
  * date: 2022-3-11

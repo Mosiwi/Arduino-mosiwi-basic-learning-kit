@@ -1,8 +1,7 @@
 /*
  * Project: PWM signal generation
  * Function: Fan drive
- * Github: https://github.com/mosiwi
- * Wiki: http://wiki.mosiwi.com
+ * Wiki: https://mosiwi-wiki.readthedocs.io
  * Web: http://mosiwi.com
  * Engineer: Jalen
  * date: 2022-4-10

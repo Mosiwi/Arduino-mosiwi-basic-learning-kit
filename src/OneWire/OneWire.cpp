@@ -531,6 +531,12 @@ uint8_t OneWire::crc8(const uint8_t *addr, uint8_t len)
 		for (uint8_t i = 8; i; i--) {
 			uint8_t mix = (crc ^ inbyte) & 0x01;
 			crc >>= 1;
+			// Anti-order CRC16
+			// 1. X16+X15+X2+1 = 11000000000000101 		  
+			// 2. The calculation of reverse XOR is used : 11000000000000101 ---> 10100000000000011
+			// 3. The lowest bit of data is not processed : 10100000000000011 ---> 1010000000000001
+			//    (Move (discard) one bit if the lowest bit of both the data and the polynomial is 1)
+			// 4. 1010000000000001 = 0xA001
 			if (mix) crc ^= 0x8C;
 			inbyte >>= 1;
 		}

@@ -8,23 +8,23 @@
 	4. Loop statement: while 
 	5. Write a function with no return value
 	
- Web: http://mosiwi.com/
- Wiki: http://wiki.mosiwi.com/
+ Web: http://mosiwi.com
+ Wiki: https://mosiwi-wiki.readthedocs.io
  Designer: jalen
  Date：2022-2-12
 */
 
 // Defining character variables. They're used to give names to the pins used: 
-const byte ledPin = 5;               // the number of the LED pin(Blue LED D5)
+const byte ledPin = 5;               // the number of the LED pin(Red LED D5)
 const byte interruptPin = 2;         // the number of the pushbutton pin(Button D2)
 
 // variables will change:
-volatile boolean state = false;           
+volatile char state = 0;           
 
 
 // Interrupt function with no return value
 void blink(void) {
-  state = !state;
+  state = 1 - state;
 }
 
 
@@ -48,7 +48,7 @@ void setup() {
 // the loop function runs over and over again forever
 void loop() {
   //Loop statement
-  while(state == false){
+  while(state == 0){
     digitalWrite(ledPin, LOW);
   }
 

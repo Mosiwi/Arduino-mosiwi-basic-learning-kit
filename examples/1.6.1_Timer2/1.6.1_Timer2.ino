@@ -4,8 +4,8 @@
  Learning target:
 	1. Variable modifier: static
 	
- Web: http://mosiwi.com/
- Wiki: http://wiki.mosiwi.com/
+ Web: http://mosiwi.com
+ Wiki: https://mosiwi-wiki.readthedocs.io
  Designer: jalen
  Date：2022-3-20
  */
@@ -15,7 +15,7 @@
 #include <MswTimer2.h>
 
 // Defining character variables: 
-const byte ledPin = 5;               // the number of the LED pin(Blue LED D5)
+const byte ledPin = 5;               // the number of the LED pin(Red LED D5)
 
 
 // Interrupt function

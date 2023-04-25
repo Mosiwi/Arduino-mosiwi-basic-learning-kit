@@ -5,8 +5,8 @@
 	1. i2c communication
 	2. Variable: array
 	
- Web: http://mosiwi.com/
- Wiki: http://wiki.mosiwi.com/
+ Web: http://mosiwi.com
+ Wiki: https://mosiwi-wiki.readthedocs.io
  Designer: jalen
  Date：2022-3-20
  */

@@ -2,7 +2,7 @@
 
 English | [简体中文](#简体中文)
 
-**This library must work with [Mosiwi Basic Learning Kit](https://github.com/Mosiwi/Mosiwi-basic-learning-kit-for-arduino)! A detail document:**
+**This library must work with [Mosiwi Basic Learning Kit](https://mosiwi-wiki.readthedocs.io/en/latest/common_product/C1K0000_4in1_basic_learning_kit/C1K0000_4in1_basic_learning_kit.html)! A detail document:**
 
 **[http://mosiwi.com](http://mosiwi.com)**
 
@@ -38,7 +38,7 @@ Search `Mosiwi basic learning kit` and install it.
 
 ## Relevant Resources
 
-- [wiki](http://wiki.mosiwi.com/index.php/Main_Page)
+- [wiki](https://mosiwi-wiki.readthedocs.io)
 
 If there is a "Limited" folder in the resources page, it means the product have limited resources that not public by default, refer to this document to download: [Get Limited Technical Resources](http://mosiwi.com).
 
@@ -49,7 +49,7 @@ If there is a "Limited" folder in the resources page, it means the product have 
 
 ## 简体中文
 
-**这个Arduino库必须配合[Mosiwi 基础学习套件](https://github.com/Mosiwi/Mosiwi-basic-learning-kit-for-arduino)一起使用！**
+**这个Arduino库必须配合[Mosiwi 基础学习套件](https://mosiwi-wiki.readthedocs.io/en/latest/common_product/C1K0000_4in1_basic_learning_kit/C1K0000_4in1_basic_learning_kit.html)一起使用！**
 
 ***
 
@@ -85,7 +85,7 @@ If there is a "Limited" folder in the resources page, it means the product have 
 
 ## 相关资源
 
-- [wiki](http://wiki.mosiwi.com/index.php/Main_Page)
+- [wiki](https://mosiwi-wiki.readthedocs.io)
 
 如果在资源下载页中看到了`Limited`文件夹，表明这个产品有非公开的技术资料。[获取受限资源的方法](http://mosiwi.com)
 

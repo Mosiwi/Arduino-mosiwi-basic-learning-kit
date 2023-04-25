@@ -1,8 +1,7 @@
 /*
  * Project: 74HC595 3wire soft communication protocol
  * Function: Controls 8 leds.  
- * Github: https://github.com/mosiwi
- * Wiki: http://wiki.mosiwi.com
+ * Wiki: https://mosiwi-wiki.readthedocs.io
  * Web: http://mosiwi.com
  * Engineer: Jalen
  * date: 2022-3-11
@@ -43,11 +42,11 @@ void ShiftOut(byte dataPin, byte clockPin, byte bitOrder, byte val){
 			digitalWrite(dataPin, (val & 128) != 0);
 			val <<= 1;
 		}
-   
-    digitalWrite(clockPin, LOW);
-    delayMicroseconds(10);  		
-    digitalWrite(clockPin, HIGH);
-    delayMicroseconds(10);
+			
+		digitalWrite(clockPin, HIGH);
+		delayMicroseconds(10);
+		digitalWrite(clockPin, LOW);
+		delayMicroseconds(10);		
 	}
 }
 
@@ -64,12 +63,27 @@ void SetLed(byte bit, byte OnOff){
 	else{
 		ledData = ledData & (~(1 << bit));
 	}
+	//ground latchPin and hold low for as long as you are transmitting
+    digitalWrite(latchPin, LOW);
+	ShiftOut(dataPin, clockPin, MSBFIRST, ledData);
+	//no longer needs to listen for information
+    digitalWrite(latchPin, HIGH);
+}
 
+void setLed(byte bitLed, byte OnOff){
+  if(OnOff == 1){
+    ledData = ledData | (0x01 << bitLed);
+  }
+  else{
+    ledData = ledData & (~(0x01 << bitLed));
+  }
+  
   //ground latchPin and hold low for as long as you are transmitting
   digitalWrite(latchPin, LOW);
-  ShiftOut(dataPin, clockPin, MSBFIRST, ledData);
+  shiftOut(dataPin, clockPin, MSBFIRST, ledData);  
+  //return the latch pin high to signal chip that it
   //no longer needs to listen for information
-  digitalWrite(latchPin, HIGH);
+  digitalWrite(latchPin, HIGH);	
 }
 
 //////////////////////////////////////////////////////////////
@@ -83,10 +97,13 @@ void loop() {
 	int a;
 	for(a=0; a<=7; a++){
 		SetLed(a, ON);
-		delay(1000);
+		delay(500);
 	}
 	for(a=7; a>=0; a--){
-		SetLed(a, OFF);
-		delay(1000);
+		setLed(a, OFF);
+		delay(500);
 	}
 }
+
+
+

@@ -1,0 +1,101 @@
+/*
+ This example works with the Mosiwi Basic learning board.
+ 
+ function: Used to drive the GX2431 EEPROM.
+ Web: http://mosiwi.com/
+ Wiki: http://wiki.mosiwi.com/
+ Designer: jalen
+ Date：2023-2-21
+ */
+
+#include <GX2431.h>
+#include <OneWire.h>
+
+const int ONE_WIRE_PIN = 7; // One Wire pin, change according to your needs. A 4.7k pull up resistor is needed.
+
+OneWire oneWire(ONE_WIRE_PIN);
+GX2431 eeprom(oneWire);
+
+void setup()
+{
+  Serial.begin(115200);
+  while (!Serial); // wait for Serial to come up on USB boards
+
+  // Search the 1-Wire bus for a connected device.
+  byte serialNb[8];
+  oneWire.target_search(GX2431::ONE_WIRE_FAMILY_CODE);
+  if (!oneWire.search(serialNb)){
+    Serial.println("No GX2431 found on the 1-Wire bus.");
+    return;
+  }
+
+  // Check serial number CRC
+  if (oneWire.crc8(serialNb, 7) != serialNb[7]){
+    Serial.println("A GX2431 was found but the serial number CRC is invalid.");
+    return;
+  }
+
+  Serial.print("GX2431 found with serial number : ");
+  printBuffer(serialNb, 8);
+  Serial.println("");
+
+  // Initialize GX2431 object
+  eeprom.begin(serialNb);
+
+  // Read all memory content
+  byte data[128];
+  eeprom.read(0, data, sizeof(data));
+
+  Serial.println("Memory contents : ");
+  printLargeBuffer(data, sizeof(data));
+  Serial.println("");
+
+  // Write a 8-byte row
+  byte newData[] = {1,2,3,4,5,6,7,8};
+  word address = 0;
+  if (eeprom.write(address, newData, sizeof(newData))){
+    Serial.print("Successfully wrote new data @ address ");
+    Serial.println(address);
+  }
+  else{
+    Serial.print("Failed to write data @ address ");
+    Serial.println(address);
+  }
+  Serial.println("");
+
+  // Read again memory content
+  eeprom.read(0, data, sizeof(data));
+
+  Serial.println("Memory contents : ");
+  printLargeBuffer(data, sizeof(data));
+  Serial.println("");
+
+  // Read single byte
+  Serial.print("Data @ address ");
+  Serial.print(address);
+  Serial.print(" : ");
+  Serial.println(eeprom.read(address));
+}
+
+void loop()
+{
+  // Nothing to do
+}
+
+void printBuffer(const uint8_t *buf, uint8_t len){
+  for (int i = 0; i < len-1; i++){
+    Serial.print(buf[i], HEX);
+    Serial.print(",");
+  }
+  Serial.println(buf[len-1], HEX);
+}
+
+void printLargeBuffer(const uint8_t *buf, uint16_t len){
+  uint8_t bytesPerLine = 8;
+
+  for (int i = 0; i < len / bytesPerLine; i++){
+    Serial.print(i * bytesPerLine);
+    Serial.print("\t\t:");
+    printBuffer(buf + i * bytesPerLine, bytesPerLine);
+  }
+}

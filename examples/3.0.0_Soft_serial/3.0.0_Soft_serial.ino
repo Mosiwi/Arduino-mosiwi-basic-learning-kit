@@ -4,8 +4,7 @@
  * Serial port communication protocol: 
    https://en.wikipedia.org/wiki/Serial_port
    https://www.analog.com/en/analog-dialogue/articles/uart-a-hardware-communication-protocol.html
- * Github: https://github.com/mosiwi
- * Wiki: http://wiki.mosiwi.com
+ * Wiki: https://mosiwi-wiki.readthedocs.io
  * Web: http://mosiwi.com
  * Engineer: Jalen
  * date: 2022-4-15

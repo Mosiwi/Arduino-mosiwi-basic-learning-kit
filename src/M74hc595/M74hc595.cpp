@@ -3,7 +3,7 @@
  
  function: Drive led through 74HC595
  Web: http://mosiwi.com/
- Wiki: http://wiki.mosiwi.com/
+ Wiki: https://mosiwi-wiki.readthedocs.io
  Designer: jalen
  Date：2022-3-17
  */

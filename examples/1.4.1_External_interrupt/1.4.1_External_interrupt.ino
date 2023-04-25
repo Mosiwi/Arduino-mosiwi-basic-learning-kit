@@ -4,22 +4,22 @@
  Learning target:
 	1. Loop statement: do...while
 	
- Web: http://mosiwi.com/
- Wiki: http://wiki.mosiwi.com/
+ Web: http://mosiwi.com
+ Wiki: https://mosiwi-wiki.readthedocs.io
  Designer: jalen
  Date：2022-3-20
 */
 
 // Defining character variables. They're used to give names to the pins used: 
-const byte ledPin = 5;               // the number of the LED pin(Blue LED D5)
+const byte ledPin = 5;               // the number of the LED pin(Red LED D5)
 const byte interruptPin = 2;         // the number of the pushbutton pin(Button D2)           
 
 // variables will change:
-volatile boolean state = false; 
+volatile char state = 0; 
 
 // Interrupt function with no return value
 void blink(void) {
-  state = !state;
+  state = 1 - state;
 }
 
 
@@ -45,7 +45,7 @@ void loop() {
   //Loop statement
   do{
     digitalWrite(ledPin, LOW);
-  }while(state == true);
+  }while(state == 0);
   delay(500);
   digitalWrite(ledPin, HIGH);
   delay(500);

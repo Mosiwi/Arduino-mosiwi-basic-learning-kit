@@ -6,15 +6,15 @@
 	2. Jump statements: goto
 	3. Function: max(), min()
 	
- Web: http://mosiwi.com/
- Wiki: http://wiki.mosiwi.com/
+ Web: http://mosiwi.com
+ Wiki: https://mosiwi-wiki.readthedocs.io
  Designer: jalen
  Date：2022-4-7
  */
  #include <MswLed.h>
  
 // Analog input pin that the microphone is attached to
-byte microphoneInPin = A6;       
+byte microphoneInPin = A2;       
 // Used to store analog value of microphone
 int voiceAnalogValue     = 0;   
 

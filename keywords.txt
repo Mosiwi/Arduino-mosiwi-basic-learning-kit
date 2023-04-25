@@ -17,6 +17,7 @@ MswLed	            KEYWORD1
 MswHT	            KEYWORD1
 AHT20	            KEYWORD1
 MswTemperature	    KEYWORD1
+MswEEPROM	        KEYWORD1
 
 MswIR 	            KEYWORD1
 IR_USE_TIMER1	    KEYWORD1

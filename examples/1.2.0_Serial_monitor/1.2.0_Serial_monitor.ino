@@ -7,8 +7,8 @@
 	3. Use of two serial port functions
 	4. Variable: char, String
 	
- Web: http://mosiwi.com/
- Wiki: http://wiki.mosiwi.com/
+ Web: http://mosiwi.com
+ Wiki: https://mosiwi-wiki.readthedocs.io
  Designer: jalen
  Date：2022-2-12
 */

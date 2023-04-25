@@ -8,14 +8,14 @@
 	4. binary number, Decimal number, Hexadecimal number
 	5. Control the led bar
 	
- Web: http://mosiwi.com/
- Wiki: http://wiki.mosiwi.com/
+ Web: http://mosiwi.com
+ Wiki: https://mosiwi-wiki.readthedocs.io
  Designer: jalen
  Date：2022-2-12
 */
 #include <MswLed.h>
 
-byte analogInPin = A7;       // Analog input pin that the Slide potentiometer is attached to
+byte analogInPin = A3;       // Analog input pin that the Slide potentiometer is attached to
 int analogValue  = 0;        // value read from the pot
 byte ledNum      = 0;
 

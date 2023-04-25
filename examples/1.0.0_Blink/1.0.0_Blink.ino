@@ -10,8 +10,8 @@
 	6. Use of the delay() function
 	7. Annotation symbols: //, /*...* /
 	
- Web: http://mosiwi.com/
- Wiki: http://wiki.mosiwi.com/
+ Web: http://mosiwi.com
+ Wiki: https://mosiwi-wiki.readthedocs.io
  Designer: jalen
  Date：2022-5-12
 */
@@ -19,7 +19,7 @@
 
 // the setup function runs once when you press reset or power the board
 void setup(){
-  // initialize digital pin 5(Blue LED D5) as an output.
+  // initialize digital pin 5(Red LED D5) as an output.
   pinMode(5, OUTPUT);
 }
 

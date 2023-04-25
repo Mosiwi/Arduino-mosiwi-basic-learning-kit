@@ -9,8 +9,8 @@
 	5. Relational operator: ==, !=
 	6. Judgment statement: if
 	
- Web: http://mosiwi.com/
- Wiki: http://wiki.mosiwi.com/
+ Web: http://mosiwi.com
+ Wiki: https://mosiwi-wiki.readthedocs.io
  Designer: jalen
  Date：2022-5-13
 */
@@ -24,7 +24,7 @@ byte buttonState;
 void setup() {
   // the number of the pushbutton pin(Button D2)
   buttonPin   = 2; 
-  // the number of the LED pin(Blue LED D5)     
+  // the number of the LED pin(Red LED D5)     
   ledPin      = 5;
   // variable for reading the pushbutton status         
   buttonState = 0; 

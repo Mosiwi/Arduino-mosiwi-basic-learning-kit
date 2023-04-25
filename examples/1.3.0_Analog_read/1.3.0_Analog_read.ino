@@ -7,14 +7,14 @@
 	3. Analog input port
 	4. Variable: int, float
 	
- Web: http://mosiwi.com/
- Wiki: http://wiki.mosiwi.com/
+ Web: http://mosiwi.com
+ Wiki: https://mosiwi-wiki.readthedocs.io
  Designer: jalen
  Date：2022-2-12
  */
  
 // These constants won't change. They're used to give names to the pins used:
-byte analogInPin = A7;       // Analog input pin that the potentiometer is attached to
+byte analogInPin = A3;       // Analog input pin that the potentiometer is attached to
 
 int analogValue       = 0;   // value read from the pot
 float voltageValue    = 0;   // Storage voltage value
