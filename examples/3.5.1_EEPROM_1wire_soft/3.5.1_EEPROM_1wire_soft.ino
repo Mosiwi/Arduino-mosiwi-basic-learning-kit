@@ -53,7 +53,7 @@ uint8_t OneWire::reset(void){
 	delayMicroseconds(480);
 	pinMode(pin, INPUT);                             // allow it to float
 	delayMicroseconds(70);
-	r = !digitalRead(pin);                           // DS18B0 exists by pulling low level accordingly
+	r = !digitalRead(pin);                           
 	interrupts();                                    // Enable the interrupt
 	delayMicroseconds(410);
 	return r;
