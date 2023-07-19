@@ -20,17 +20,8 @@ English | [简体中文](#简体中文)
 
 
 ## How to install this library
-*`We recommend using the Arduino library manager, it's the simplest way`*
 
 ### Use Arduino Library Manager
-Open Arduino IDE, then Select `Sketch`->`Include Library`->`Manage Libraries...`
-Search `Mosiwi basic learning kit` and install it.
-![image](img/01.png)
-
-&nbsp;
-
-![image](img/02.png)
-
 
 ## API Reference
 [API](src/API.md)
@@ -67,17 +58,8 @@ If there is a "Limited" folder in the resources page, it means the product have 
 
 
 ## 安装方法
-*`强烈推荐使用Arduino自带的“库管理器”进行安装!`*
-
-### 通过Arduino库管理器安装
-打开Arduino IDE, 选择`项目`->`加载库`->`管理库...`，打开“库管理器”
-搜索`Mosiwi basic learning kit`并安装.
-![image](img/01.png)
 
 &nbsp;
-
-![image](img/02.png)
-
 
 ## API参考
 [API](src/API.md)
