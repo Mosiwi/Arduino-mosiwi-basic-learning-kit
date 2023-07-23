@@ -43,7 +43,7 @@ float Measuring_distance(void){
 // Read the button value.
 void GetKeyValue(void){
   keyValue = DTB.ReadKeyValue();
-  if(keyValue == 8 || keyValue == 4 || keyValue == 2 || keyValue == 1){
+  if(keyValue == 16 || keyValue == 8 || keyValue == 4 || keyValue == 2 || keyValue == 1){
     OnOff = !OnOff;
   }
 }
