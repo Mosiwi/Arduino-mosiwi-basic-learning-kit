@@ -23,11 +23,13 @@ class stc:
     def get_mic_data(self):
         return self.read_data_from_stc(0x00)
         
-ir = stc()
+iic = stc()
 
 while True:
-    ir_data = ir.get_ir_data()
-    print(ir_data)
+    #sr_data = iic.get_sr_data()
+    #mic_data = iic.get_mic_data()
+    ir_data = iic.get_ir_data()
+    print("Remote key value: %d" %ir_data)
     time.sleep_ms(100)
 
 
