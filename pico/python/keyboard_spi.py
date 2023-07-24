@@ -2,7 +2,7 @@ import time
 from machine import Timer, SPI, Pin
 
 # create input pin on GPIO20
-keyFlag = Pin(20, Pin.IN)     
+keyOutPin = Pin(20, Pin.IN)
 keyValue = 0
 
 class bc7278:
@@ -29,7 +29,8 @@ spi = bc7278()
 
 # Timer interrupt function.
 def getKeyValue(t):
-    if keyFlag.value() == 0:
+    global keyValue
+    if keyOutPin.value() == 0:
         keyValue = spi.key_value()
 
 # Initialize the timer interrupt function.  
@@ -38,7 +39,8 @@ Timer(freq=10, mode=Timer.PERIODIC, callback=getKeyValue)
 while True:
     if keyValue != 0:
         print(keyValue)
+        time.sleep_ms(250)
         keyValue = 0
-    time.sleep_ms(1000)
+    
     
     

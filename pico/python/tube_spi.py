@@ -83,11 +83,11 @@ class bc7278:
             self.diaplay_bit(3, int(dat/1000))
         else:
             self.clear_bit(3)
-        if (int(dat/1000) != 0) or (int(dat%1000/100) != 0):
+        if (int(dat/1000) != 0) and (int(dat%1000/100) != 0):
             self.diaplay_bit(2, int(dat%1000/100))
         else:
             self.clear_bit(2)
-        if (int(dat/1000) != 0) or (int(dat%1000/100) != 0) or (int(dat%100/10 != 0)):
+        if (int(dat/1000) != 0) and (int(dat%1000/100) != 0) and (int(dat%100/10 != 0)):
             self.diaplay_bit(1, int(dat%100/10))
         else:
             self.clear_bit(1)          
@@ -96,8 +96,9 @@ class bc7278:
         
 spi = bc7278()
 while True:
-    spi.diaplay_num(8888)
-    time.sleep_ms(1000)
+    for a in range(0, 9999):
+        spi.diaplay_num(a)
+        time.sleep_ms(1000)
     spi.diaplay_num(999.9, 1)
     time.sleep_ms(1000)
 

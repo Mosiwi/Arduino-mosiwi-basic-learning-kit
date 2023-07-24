@@ -1,12 +1,12 @@
 import time
 from machine import Pin
 
-p21 = Pin(21, Pin.IN)     # create input pin on GPIO21
-p25 = Pin(25, Pin.OUT)    # create output pin on GPIO25
+Button = Pin(21, Pin.IN)     # create input pin on GPIO21
+G_LED = Pin(9, Pin.OUT)      # create output pin on GPIO9
 
 while(1):
-    button_value = p21.value()
+    button_value = Button.value()
     if button_value == 1:
-        p25.off()                # set pin to "off" (low) level
+        G_LED.off()                # set pin to "off" (low) level
     else:
-        p25.on()                 # set pin to "on" (high) level
+        G_LED.on()                 # set pin to "on" (high) level
