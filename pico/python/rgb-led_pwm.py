@@ -16,7 +16,7 @@ B_LED.freq(1000)
 
 while True:
     for i in range(0, 65536):
-        time.sleep_us(20)        # sleep for 100 microseconds
+        time.sleep_us(20)        # sleep for 20 microseconds
         R_LED.duty_u16(i)        # set duty cycle, range 0-65535      
     for i in range(0, 65536):
         time.sleep_us(20)        
