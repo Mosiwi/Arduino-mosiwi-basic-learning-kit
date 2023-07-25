@@ -13,22 +13,22 @@ S1.freq(1000)
 
 while True:
     # CW
-    for i in range(0, 32768):
+    for i in range(0, 42768):
         S1.duty_u16(i)           # set duty cycle, range 0-65535
-        S2.duty_u16(65535)       # set duty cycle, range 0-65535
-        time.sleep_us(20)        # sleep for 20 microseconds
-    for i in range(0, 32768):
-        time.sleep_us(20)        
-        S1.duty_u16(32767-i)
-        S2.duty_u16(65535)
+        S2.duty_u16(0)       # set duty cycle, range 0-65535
+        time.sleep_us(50)        # sleep for 20 microseconds
+    for i in range(0, 42768):
+        time.sleep_us(50)        
+        S1.duty_u16(42767-i)
+        S2.duty_u16(0)
     # CCW
-    for i in range(0, 32768):
+    for i in range(0, 42768):
         S2.duty_u16(i)           
-        S1.duty_u16(65535)       
-        time.sleep_us(20)        
-    for i in range(0, 32768):
-        time.sleep_us(20)        
-        S2.duty_u16(32767-i)
-        S1.duty_u16(65535) 
+        S1.duty_u16(0)       
+        time.sleep_us(50)        
+    for i in range(0, 42768):
+        time.sleep_us(50)        
+        S2.duty_u16(42767-i)
+        S1.duty_u16(0) 
 
     time.sleep_ms(1000)
