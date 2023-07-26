@@ -29,7 +29,8 @@ while True:
     #sr_data = iic.get_sr_data()
     #mic_data = iic.get_mic_data()
     ir_data = iic.get_ir_data()
-    print("Remote key value: %d" %ir_data)
+    if ir_data != 0:
+        print("Remote key value: %d" %ir_data)
     time.sleep_ms(100)
 
 
