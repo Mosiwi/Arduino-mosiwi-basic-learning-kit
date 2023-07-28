@@ -18,7 +18,7 @@
 #include <stdbool.h>
 
 // Defining character variables:
-const char ledPin = 5;               // the number of the LED pin(Red LED D5)
+const char ledPin = 23;               // the number of the LED pin
 
 // Thread function
 PI_THREAD (flashThread){
