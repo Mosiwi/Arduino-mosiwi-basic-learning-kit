@@ -8,12 +8,12 @@
  * date: 2023-4-13
 '''
 
-import time
-from machine import Pin, I2C
+import time                      # Importing a time class
+from machine import Pin, I2C     # Import the Pin and PWM class from the machine module.
 
 # i2c.deinit()      # Turn off the I2C bus
 
-class aht20:
+class aht20:                     # Create an aht20 class
     # AHT20 Register address
     reg1_ = 0x1b
     reg2_ = 0x1c
@@ -22,11 +22,13 @@ class aht20:
     ac_d1 = 0x33
     ac_d2 = 0x00
     
-    def __init__(self, scl_=5, sda_=4, addr=0x38):
-        self.address = addr
+    def __init__(self, scl_=5, sda_=4, addr=0x38):    # Class constructor
+        self.address = addr                           # Create a class variable and assign the 
+                                                      # i2c slave address of aht20 to it.
+        # Create an aht20 i2c object and set the communication frequency to 100KHz.
         self.i2c = I2C(0, scl=Pin(scl_), sda=Pin(sda_), freq=100_000)
         
-    def calc_crc8(self, message, Num):
+    def calc_crc8(self, message, Num):                # CRC8 check function
         crc=0xFF
         for cnt in range(0, Num):
             crc ^= message[cnt]
@@ -99,8 +101,8 @@ class aht20:
             self.reset_reg(0x1e);
         
         
-ht = aht20()
-ht.start_init()
+ht = aht20()       # Create an object of class aht20.
+ht.start_init()    # Initialize the status of aht20 temperature and humidity sensor.
 
 while True:
     time.sleep_ms(1000)
