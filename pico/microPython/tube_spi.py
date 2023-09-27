@@ -1,5 +1,5 @@
-import time
-from machine import SPI, Pin
+import time                    # Importing a time class
+from machine import SPI, Pin   # Import the Pin and SPI class from the machine module.
 
 class bc7278:
     DecReg = 0x1B

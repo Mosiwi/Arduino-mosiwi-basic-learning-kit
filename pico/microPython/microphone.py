@@ -1,5 +1,5 @@
-import time
-from machine import ADC, Pin
+import time                          # Importing a time class
+from machine import ADC, Pin         # Import the Pin and ADC class from the machine module.
 
 microphone = ADC(Pin(27))            # create ADC object on ADC pin
 

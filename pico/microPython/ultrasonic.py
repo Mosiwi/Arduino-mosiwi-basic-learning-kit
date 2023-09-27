@@ -1,5 +1,5 @@
-import time
-from machine import Pin, PWM
+import time                  # Importing a time class
+from machine import Pin, PWM # Import the Pin and PWM class from the machine module.
 
 echo = Pin(9, Pin.IN)        # create input pin on GPIO9, S1 pin of the expansion board
 trig = Pin(8, Pin.OUT)       # create output pin on GPIO8, S2 pin of the expansion board

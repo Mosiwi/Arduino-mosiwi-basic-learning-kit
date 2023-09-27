@@ -1,5 +1,5 @@
 # https://docs.micropython.org/en/latest/rp2/quickref.html
-import time                 # Importing a time class
+import time                 # Importing the time class
 from machine import Pin     # Import the Pin class from the machine module.
 
 p25 = Pin(25, Pin.OUT)      # create output pin on GPIO25

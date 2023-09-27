@@ -1,4 +1,4 @@
-import time                       # Importing a time class
+import time                       # Importing the time class
 from machine import Pin, PWM      # Import the Pin and PWM class from the machine module.
 
 # pwd_f  = pwm0.freq()            # get current frequency

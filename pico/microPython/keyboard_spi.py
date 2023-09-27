@@ -1,5 +1,5 @@
-import time
-from machine import Timer, SPI, Pin
+import time                           # Importing a time class
+from machine import Timer, SPI, Pin   # Import the Pin, Timer, and SPI class from the machine module.
 
 # create input pin on GPIO20
 keyOutPin = Pin(20, Pin.IN)
@@ -18,7 +18,7 @@ class bc7278:
                        miso=Pin(16))
 
     def key_value(self):
-        buf = bytearray([0, 0])
+        buf = bytearray([0, 0])             # Create a two-member list buffer
         self.spi.readinto(buf, 0xff) 
         dat = buf[0]*255 + buf[1]
         return ((~dat) & 0xffff) >> 11
@@ -31,7 +31,7 @@ spi = bc7278()
 def getKeyValue(t):
     global keyValue
     if keyOutPin.value() == 0:
-        keyValue = spi.key_value()
+        keyValue = spi.key_value()     # Reading key values
 
 # Initialize the timer interrupt function.  
 Timer(freq=10, mode=Timer.PERIODIC, callback=getKeyValue)

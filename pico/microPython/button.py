@@ -1,4 +1,4 @@
-import time                  # Importing a time class
+import time                  # Importing the time class
 from machine import Pin      # Import the Pin class from the machine module.
 
 Button = Pin(21, Pin.IN)     # create input pin on GPIO21

@@ -1,5 +1,5 @@
-import time
-from machine import ADC, Pin
+import time                          # Importing the time class
+from machine import ADC, Pin         # Import the Pin and ADC class from the machine module.
 
 pm = ADC(Pin(28))                    # create ADC object on ADC pin
 

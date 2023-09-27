@@ -1,5 +1,5 @@
-import time
-from machine import Pin, PWM
+import time                      # Importing the time class
+from machine import Pin, PWM     # Import the Pin and PWM class from the machine module.
 
 # pwd_f  = pwm0.freq()           # get current frequency
 # pwm_dy = pwm0.duty_u16()       # get current duty cycle, range 0-65535
