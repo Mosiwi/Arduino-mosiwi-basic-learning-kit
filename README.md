@@ -2,9 +2,9 @@
 
 English | [简体中文](#简体中文)
 
-**This library must work with [Mosiwi Basic Learning Kit](https://mosiwi-wiki.readthedocs.io/en/latest/common_product/C1K0000_4in1_basic_learning_kit/C1K0000_4in1_basic_learning_kit.html)! A detail document:**
+**This library must work with [Mosiwi Basic Learning Kit](https://docs.mosiwi.com/projects/c1k0000/en/latest)!**      
 
-**[http://mosiwi.com](http://mosiwi.com)**
+**[Mosiwi wiki](https://docs.mosiwi.com/en/latest/index.html)**
 
 ## CONTENT
 
@@ -40,7 +40,9 @@ If there is a "Limited" folder in the resources page, it means the product have 
 
 ## 简体中文
 
-**这个Arduino库必须配合[Mosiwi 基础学习套件](https://mosiwi-wiki.readthedocs.io/en/latest/common_product/C1K0000_4in1_basic_learning_kit/C1K0000_4in1_basic_learning_kit.html)一起使用！**
+**这个Arduino库必须配合[Mosiwi 基础学习套件](https://docs.mosiwi.com/projects/c1k0000/en/latest)一起使用！**
+
+**[Mosiwi 维基](https://docs.mosiwi.com/en/latest/index.html)**
 
 ***
 
