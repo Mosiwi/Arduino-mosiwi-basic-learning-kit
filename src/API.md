@@ -1,18 +1,7 @@
-Please check the relevant xx.h file.
+# API
 
+* [Link](https://docs.mosiwi.com/projects/c1k0000/en/latest/)    
 
-## Features
-
-* ...
-* ...
-
-## API
-
-### Code
-
-```C++
-...
-...
-```
+* [链接](https://docs.mosiwi.com/projects/c1k0000/en/latest/)     
 
 
